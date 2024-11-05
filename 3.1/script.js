@@ -39,16 +39,16 @@ secondButton.onclick = secondCounter;
 // 4
 const fieldOutside = document.createElement("div");
 fieldOutside.style.backgroundColor = "white";
-fieldOutside.style.width = "500px"
+fieldOutside.style.width = "500px";
 fieldOutside.style.height = "500px";
-fieldOutside.style.marginTop = "50px"
-fieldOutside.style.border = "solid black 2px"
+fieldOutside.style.marginTop = "50px";
+fieldOutside.style.border = "solid black 2px";
 
 const field = document.createElement("div");
 field.style.backgroundColor = "green";
 field.style.width = "440px";
 field.style.height = "500px";
-field.style.margin = "0 30px"
+field.style.margin = "0 30px";
 
 fieldOutside.append(field);
 body.append(fieldOutside);
@@ -61,14 +61,13 @@ body.append(ball);
 
 fieldOutside.addEventListener("click", (e) => {
   ball.style.position = "absolute";
-  ball.style.top = `${e.clientY-25}px`;
-  ball.style.left = `${e.clientX-25}px`;
-  console.log(e.clientX)
-  console.log(e.clientY)
+  ball.style.top = `${e.clientY - 25}px`;
+  ball.style.left = `${e.clientX - 25}px`;
+
   // 5
-  if (e.clientX < 40 && (e.clientY > 250 && e.clientY < 750)) {
+  if (e.clientX < 40 && e.clientY > 250 && e.clientY < 750) {
     secondGoals.innerText = parseInt(secondGoals.innerText) + 1;
-  } else if (e.clientX > 470 && (e.clientY > 250 && e.clientY < 750)) {
+  } else if (e.clientX > 470 && e.clientY > 250 && e.clientY < 750) {
     firstGoals.innerText = parseInt(firstGoals.innerText) + 1;
   }
 });
