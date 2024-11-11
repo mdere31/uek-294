@@ -1,6 +1,8 @@
 const container = document.querySelector("h2 + div");
 const main = document.getElementsByTagName("main")[0];
 const body = document.getElementsByTagName("body")[0];
+const songList = document.createElement("ul");
+main.append(songList);
 
 const buttonsContainer = document.createElement("div");
 buttonsContainer.style.width = "100%";
@@ -70,14 +72,42 @@ const songNames = [
   ["Yo", "Şerbetli", "Sorma Gitsin", "Çınar", "Darmaduman"],
 ];
 
+const showAlbumsSongs = (link) => {
+  link.addEventListener("click", () => {
+    songList.replaceChildren();
+
+    const listNumber = link.href.slice(link.href.length-1, link.href.length);
+    console.log(listNumber)
+    const songs = songNames.at(listNumber-1)
+    console.log(songs)
+    for(i = 0; i < 5; i++) {
+      const a = document.createElement("li");
+      a.innerText = songs.at(i)
+      songList.append(a);
+    }
+  })
+};
+
+const allLinks = document.getElementsByTagName("a");
+
+for (i = 0; i < allLinks.length; i++) {
+  showAlbumsSongs(allLinks.item(i));
+}
+
 addThreeButton.addEventListener("click", () => {
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("small_container");
 
   for (i = 0; i < 3; i++) {
+    const linkForImage = document.createElement("a");
     const img = document.createElement("img");
-    img.src = `images/${Math.floor(Math.random() * 6 + 1)}.jfif`;
-    imageContainer.append(img);
+    const randomNumber = Math.floor(Math.random() * 6 + 1)
+    img.src = `images/${randomNumber}.jfif`;
+    linkForImage.href = `#${randomNumber}`
+    linkForImage.append(img);
+    imageContainer.append(linkForImage);
+
+    showAlbumsSongs(linkForImage);
   }
 
   albumsContainer.append(imageContainer);
@@ -87,23 +117,4 @@ removeThreeButton.addEventListener("click", () => {
   albumsContainer.children[1].remove();
 });
 
-const addLinksToImages = (container) => {
-  if (body.nextElementSibling != null) {
-    main.remove(main.nextElementSibling)
-  } else {
-    for (i = 0; i < 3; i++) {
-        container.children[i].addEventListener("click", () => {
-          const songs = document.createElement("div");
-          const list = document.createElement("ol");
-          for (i = 0; i < 5; i++) {
-            const song = document.createElement("li");
-  
-            song.innerText = songNames.at(i);
-            list.append(song);
-          }
-          songs.append(list);
-          main.after(songs);
-        });
-      }
-  }
-};
+// 4 und 5 noch nicht gemacht
