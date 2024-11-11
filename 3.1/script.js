@@ -64,6 +64,8 @@ fieldOutside.addEventListener("click", (e) => {
   ball.style.top = `${e.clientY - 25}px`;
   ball.style.left = `${e.clientX - 25}px`;
 
+  // .getBoundingClientRect(); holt grösse vom element
+
   // 5
   if (e.clientX < 40 && e.clientY > 250 && e.clientY < 750) {
     secondGoals.innerText = parseInt(secondGoals.innerText) + 1;
