@@ -91,3 +91,5 @@ Eine Komponente, die es Benutzern ermöglicht, eine Bewertung abzugeben, indem s
 Eine Komponente, die es ermöglicht, hierarchische Strukturen anzuzeigen und zu navigieren.
 
 ![alt text](images/image-14.png)
+
+![alt text](image.png)

@@ -72,20 +72,45 @@ const songNames = [
   ["Yo", "Şerbetli", "Sorma Gitsin", "Çınar", "Darmaduman"],
 ];
 
+const header = document.getElementsByTagName("h2")[0];
+
+const songHeader = document.createElement("h2");
+songHeader.innerText = "Now Playing:";
+songHeader.style.visibility = "hidden";
+
+const songText = document.createElement("p");
+songText.innerText = "";
+songText.style.visibility = "hidden";
+
+header.before(songHeader);
+header.before(songText);
+
+const showPlayingMusic = (song) => {
+  const link = document.createElement("a");
+  link.append(song);
+  songList.append(link);
+
+  link.addEventListener("click", () => {
+    songHeader.style.visibility = "visible";
+    songText.style.visibility = "visible";
+
+    songText.innerText = song.innerText;
+  });
+};
+
 const showAlbumsSongs = (link) => {
   link.addEventListener("click", () => {
     songList.replaceChildren();
 
-    const listNumber = link.href.slice(link.href.length-1, link.href.length);
-    console.log(listNumber)
-    const songs = songNames.at(listNumber-1)
-    console.log(songs)
-    for(i = 0; i < 5; i++) {
-      const a = document.createElement("li");
-      a.innerText = songs.at(i)
-      songList.append(a);
+    const listNumber = link.href.slice(link.href.length - 1, link.href.length);
+    const songs = songNames.at(listNumber - 1);
+
+    for (i = 0; i < 5; i++) {
+      const songListItem = document.createElement("li");
+      songListItem.innerText = songs.at(i);
+      showPlayingMusic(songListItem);
     }
-  })
+  });
 };
 
 const allLinks = document.getElementsByTagName("a");
@@ -94,27 +119,49 @@ for (i = 0; i < allLinks.length; i++) {
   showAlbumsSongs(allLinks.item(i));
 }
 
-addThreeButton.addEventListener("click", () => {
-  const imageContainer = document.createElement("div");
-  imageContainer.classList.add("small_container");
-
+const getThreeRandomAlbums = (container) => {
   for (i = 0; i < 3; i++) {
     const linkForImage = document.createElement("a");
     const img = document.createElement("img");
-    const randomNumber = Math.floor(Math.random() * 6 + 1)
+    const randomNumber = Math.floor(Math.random() * 6 + 1);
     img.src = `images/${randomNumber}.jfif`;
-    linkForImage.href = `#${randomNumber}`
+    linkForImage.href = `#${randomNumber}`;
     linkForImage.append(img);
-    imageContainer.append(linkForImage);
+    container.append(linkForImage);
 
     showAlbumsSongs(linkForImage);
   }
+}
+
+const addThreeAlbums = () => {
+  const imageContainer = document.createElement("div");
+  imageContainer.classList.add("small_container");
+
+  getThreeRandomAlbums(imageContainer);
 
   albumsContainer.append(imageContainer);
-});
+}
+
+addThreeButton.addEventListener("click", addThreeAlbums);
 
 removeThreeButton.addEventListener("click", () => {
   albumsContainer.children[1].remove();
+
+  songList.replaceChildren()
 });
 
-// 4 und 5 noch nicht gemacht
+const randomizer = () => {
+  const allAlbums = document.querySelectorAll(".small_container");
+
+  for (let album of allAlbums) {
+    album.replaceChildren()
+    getThreeRandomAlbums(album)
+  }
+}
+
+const randomizerButton = document.createElement("button");
+randomizerButton.innerText = "Randomize Albums"
+
+randomizerButton.addEventListener("click", randomizer);
+
+buttonsContainer.append(randomizerButton)
