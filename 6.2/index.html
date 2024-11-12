@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        input:valid {
+            border: 1px solid green;
+        }
+
+        input:invalid {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <form id="register">
+        <label for="email">E-Mail:</label><br>
+        <input type="email" required name="email" id="email"><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" required name="password" id="password" minlength="8"><br>
+
+        <label for="password_confirmation">Confirm Password:</label><br>
+        <input type="password" required name="password_confirmation" id="password_confirmation" minlength="8"><br>
+
+        <label for="agb">Accept AGB:</label><br>
+        <input type="checkbox" required name="agb" id="agb"><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
