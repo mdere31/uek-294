@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     loginForm.style.display = "none";
     userLogged.style.display = "block";
+
+    //hier kann man noch ausloggen, mit user image
   }
 
   loginForm.addEventListener("submit", async (e) => {
@@ -18,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = loginForm.elements.email.value;
     const password = loginForm.elements.password.value;
+
+    //password überprüfen, ist es m294, wenn nicht, dann mit .setCustomValidity() zeigen
 
     const response = await fetch("http://localhost/auth/jwt/sign", {
       method: "POST",
@@ -53,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let list of allLists) {
       const form = document.createElement("form");
 
-      //form erstellen
+      //form erstellen pro task
 
       const resultTitle = list.title;
       const task = document.createElement("h2");
@@ -81,4 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
       listsContainer.appendChild(checkbox);
     }
   });
+
+  //nicht fertig, hier kommen die anderen aufgaben wie z.b. delete, get mit id, usw.
 });
