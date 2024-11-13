@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt</title>
+</head>
+<body>
+    <header>
+        <img src="images/user.png" alt="User" id="user" style="width: 40px; position: absolute; right: 5px; top: 5px;">
+    </header>
+    <main>
+        <form id="login">
+            <label for="email">E-Mail:</label><br>
+            <input type="email" required minlength="6" maxlength="40" name="email" id="email"><br>
+    
+            <label for="password">Password:</label><br>
+            <input type="password" required minlength="4" maxlength="16" name="password" id="password"><br>
+    
+            <input type="submit" id="submit" value="Log In">
+        </form>
+        <div id="lists">
+    
+        </div>
+        <button id="getLists">Get Lists</button>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>
